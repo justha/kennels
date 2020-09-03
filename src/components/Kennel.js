@@ -1,11 +1,13 @@
 import React from "react"
+import { LocationList } from "./location/LocationList"
+import { LocationProvider } from "./location/LocationProvider"
+import "./Kennel.css"
+
 import { Animal } from "./animal/Animal"
 import { Employee } from "./employee/Employee";
-import { Location } from "./location/Location";
 import { Customer } from "./customer/Customer";
 import "./animal/Animal.css"
 import "./employee/Employee.css"
-import "./location/Location.css"
 import "./customer/Customer.css"
 
 
@@ -32,12 +34,11 @@ export const Kennel = () => (
             <Employee />
             <Employee />
         </article>
-
+     
         <h2>Locations</h2>
-        <article className="locations">
-            <Location />
-            <Location />
-        </article>
+        <LocationProvider>
+            <LocationList />
+        </LocationProvider>
 
         <h2>Customers</h2>
         <article className="customers">
