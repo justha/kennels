@@ -40,7 +40,7 @@ export const Kennel = () => (
         </article>
 
         <h2>Customers</h2>
-        <article className="customer">
+        <article className="customers">
             <Customer />
             <Customer />
             <Customer />
