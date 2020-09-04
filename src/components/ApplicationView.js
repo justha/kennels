@@ -8,6 +8,7 @@ import { LocationList } from "./location/LocationList"
 import { AnimalList } from "./animal/AnimalList"
 import { EmployeeList } from "./employee/EmployeeList";
 import { CustomerList } from "./customer/CustomerList";
+import { EmployeeForm } from "./employee/EmployeeForm";
 
 
 export const ApplicationViews = (props) => {
@@ -38,11 +39,14 @@ export const ApplicationViews = (props) => {
                 </Route>
             </CustomerProvider>
 
-            <EmployeeProvider>
-                <Route path="/employees">       {/* Render the animal list when http://localhost:3000/employees */}
 
-                    <EmployeeList />
-                </Route>
+            <EmployeeProvider>
+                <LocationProvider>
+                    <Route exact path="/employees" render={props => <EmployeeList {...props} />} />
+                    <Route exact path="/employees/create">
+                        <EmployeeForm />
+                    </Route>
+                </LocationProvider>
             </EmployeeProvider>
 
         </>
