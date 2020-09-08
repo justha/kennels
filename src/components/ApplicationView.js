@@ -14,40 +14,51 @@ import { EmployeeForm } from "./employee/EmployeeForm";
 export const ApplicationViews = (props) => {
     return (
         <>
+
             <LocationProvider>
                 <Route exact path="/">      {/* Render the location list when http://localhost:3000/ */}
-
                     <LocationList />
                 </Route>
             </LocationProvider>
+
 
             <AnimalProvider>
                 <CustomerProvider>
                     <LocationProvider>
                         <Route path="/animals">     {/* Render the animal list when http://localhost:3000/animals */}
-
                             <AnimalList />
                         </Route>
                     </LocationProvider>
                 </CustomerProvider>
             </AnimalProvider>
 
+
             <CustomerProvider>
                 <Route path="/customers">       {/* Render the animal list when http://localhost:3000/customers */}
-
                     <CustomerList />
                 </Route>
             </CustomerProvider>
 
 
             <EmployeeProvider>
-                <LocationProvider>
-                    <Route exact path="/employees" render={props => <EmployeeList {...props} />} />
-                    <Route exact path="/employees/create">
-                        <EmployeeForm />
-                    </Route>
-                </LocationProvider>
+                    <LocationProvider>
+                    <Route exact path="/employees" render={(props) => {
+                        return <EmployeeList history={props.history} />
+                    }} />
+                    </LocationProvider>
             </EmployeeProvider>
+
+
+            <EmployeeProvider>
+                <AnimalProvider>
+                    <LocationProvider>
+                        <Route path="/employees/create" render={(props) => {
+                            return <EmployeeForm {...props} />
+                        }} />
+                    </LocationProvider>
+                </AnimalProvider>
+            </EmployeeProvider>
+
 
         </>
     )

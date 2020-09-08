@@ -9,13 +9,11 @@ export const EmployeeForm = (props) => {
     const { locations, getLocations } = useContext(LocationContext)
     const { animals, getAnimals } = useContext(AnimalContext)
 
-    /*
-        Create references that can be attached to the input
-        fields in the form. This will allow you to get the
-        value of the input fields later when the user clicks
-        the save button.
+    /*  
+        Create references that can be attached to the input fields in the form. This will allow you to get the
+        value of the input fields later when the user clicks the save button.
 
-        No more `document.querySelector()` in React.
+        No more `document.querySelector()` in React. 
     */
     const name = useRef(null)
     const location = useRef(null)
@@ -29,11 +27,9 @@ export const EmployeeForm = (props) => {
     }, [])
 
     const constructNewEmployee = () => {
-        /*
-            The `location` and `animal` variables below are
-            the references attached to the input fields. You
-            can't just ask for the `.value` property directly,
-            but rather `.current.value` now in React.
+        /*  
+            The `location` and `animal` variables below are the references attached to the input fields. You
+            can't just ask for the `.value` property directly, but rather `.current.value` now in React. 
         */
         const locationId = parseInt(location.current.value)
         const animalId = parseInt(animal.current.value)
