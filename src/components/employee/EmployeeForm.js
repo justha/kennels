@@ -23,7 +23,8 @@ export const EmployeeForm = (props) => {
         Get animal state and location state on initialization.
     */
     useEffect(() => {
-       getAnimals().then(getLocations)
+       getAnimals()
+       getLocations()
     }, [])
 
     const constructNewEmployee = () => {
@@ -73,9 +74,9 @@ export const EmployeeForm = (props) => {
                     <label htmlFor="location">Caretaker for: </label>
                     <select defaultValue="" name="animal" ref={animal} id="employeeAnimal" className="form-control" >
                         <option value="0">Select an animal</option>
-                        {animals.map(e => (
-                            <option key={e.id} value={e.id}>
-                                {e.name}
+                        {animals.map(a => (
+                            <option key={a.id} value={a.id}>
+                                {a.name}
                             </option>
                         ))}
                     </select>

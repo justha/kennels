@@ -4,40 +4,40 @@ import { LocationContext } from "../location/LocationProvider"
 import { CustomerContext } from "../customer/CustomerProvider"
 import { Animal } from "./AnimalConverter"
 import "./Animal.css"
-import { getCustomers } from "../customer/CustomerProvider";
-import { getLocations } from "../location/LocationProvider";
 
 
-export const AnimalList = () => {
+export const AnimalList = (props) => {
     const { animals, getAnimals } = useContext(AnimalContext)
-    const { locations, getLocations } = useContext(LocationContext)
     const { customers, getCustomers } = useContext(CustomerContext)
+    const { locations, getLocations } = useContext(LocationContext)
 
 
     useEffect(() => {
         console.log("AnimalList: Initial render before data")
         getAnimals()
-        getLocations()
         getCustomers()
-
-        // .then() not necessary in this case, but can opt to use following syntax for readability...
-        // getAnimals().then(getCustomers).then(getLocations)    
-
+        getLocations()
+        // .then() not necessary in this case, but can opt to use following syntax for readability: getAnimals().then(getCustomers).then(getLocations)    
     }, [])
 
     return (
-        <article className="animals">
-            {animals.map(animal => {
-                const owner = customers.find(c => c.id === animal.customerId) || {}
-                const clinic = locations.find(l => l.id === animal.locationId) || {}
+        <>
+            <button onClick={() => props.history.push("/animals/create")}>
+                    Add Animal
+            </button>
+            <article className="animals">
+                {animals.map(animal => {
+                    const owner = customers.find(c => c.id === animal.customerId) || {}
+                    const clinic = locations.find(l => l.id === animal.locationId) || {}
 
-                return <Animal 
-                            key={animal.id}
-                            location={clinic}
-                            customer={owner}
-                            animal={animal} />
-            })}
-        </article>
+                    return <Animal 
+                                key={animal.id}
+                                location={clinic}
+                                customer={owner}
+                                animal={animal} />
+                })}
+            </article>
+        </>
     )
 }
 
