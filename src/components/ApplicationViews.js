@@ -10,6 +10,7 @@ import { EmployeeList } from "./employee/EmployeeList";
 import { CustomerList } from "./customer/CustomerList";
 import { EmployeeForm } from "./employee/EmployeeForm";
 import { AnimalForm } from "./animal/AnimalForm";
+import { EmployeeDetail } from "./employee/EmployeeDetail";
 
 
 export const ApplicationViews = (props) => {
@@ -54,13 +55,17 @@ export const ApplicationViews = (props) => {
             </EmployeeProvider>
 
             <EmployeeProvider>
-                <AnimalProvider>
-                    <LocationProvider>
-                        <Route path="/employees/create" render={(props) => {
-                            return <EmployeeForm {...props} />
-                        }} />
-                    </LocationProvider>
-                </AnimalProvider>
+                <LocationProvider>
+                    <AnimalProvider>
+                        <Route path="/employees/create" render={
+                            props => <EmployeeForm {...props} />
+                        } />
+
+                        <Route path="/employees/:employeeId(\d+)" render={
+                            props => <EmployeeDetail {...props} />
+                        } />
+                    </AnimalProvider>
+                </LocationProvider>
             </EmployeeProvider>
 
 
