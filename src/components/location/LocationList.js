@@ -45,25 +45,3 @@ export const LocationList = () => {
         </div >
     )
 }
-
-// export const LocationList = () => {
-//     const { locations, getLocations } = useContext(LocationContext)
-
-//     useEffect(() => {
-//         getLocations()
-
-//     }, [])
-
-//     return (
-//         <article className="locations">
-//             {
-//                     locations.map(location => {
-//                         return <section key={location.id} className="location">
-//                             <h3>{location.name}</h3>
-//                             <div>{location.address}</div>
-//                         </section>
-//                     })
-//             }
-//         </article>
-//     )
-// }
