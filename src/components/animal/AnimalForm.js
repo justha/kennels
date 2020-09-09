@@ -3,7 +3,7 @@ import { AnimalContext } from "../animal/AnimalProvider"
 import { LocationContext } from "../location/LocationProvider"
 import { CustomerContext } from "../customer/CustomerProvider"
 import "./Animal.css"
-import { Animal } from "./AnimalConverter"
+import { Animal } from "./Animal"
 
 export const AnimalForm = (props) => {
 
