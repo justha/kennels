@@ -15,22 +15,26 @@ export const EmployeeDetail = (props) => {
     const [location, setLocation] = useState({})
 
     useEffect(() => {
+        console.log("initialization of EmployeeDetail")
         getEmployees()
             .then(getAnimals)
             .then(getLocations)
     }, [])
 
     useEffect(() => {
+        console.log("animal state changed")
         const animal = animals.find(a => a.id === employee.animalId) || {}
         setAnimal(animal)
     }, [animals])
 
     useEffect(() => {
+        console.log("employee state changed")
         const employee = employees.find(e => e.id === parseInt(props.match.params.employeeId)) || {}
         setEmployee(employee)
     }, [employees])
 
     useEffect(() => {
+        console.log("location state changed")
         const location = locations.find(l => l.id === employee.locationId) || {}
         setLocation(location)
     }, [locations])
