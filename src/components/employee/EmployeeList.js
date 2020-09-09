@@ -23,9 +23,11 @@ export const EmployeeList = (props) => {
             <article className="employees">
                 {
                     employees.map(employee => {
-                        return <Link key={employee.id} className="employee" to={`/employees/${employee.id}`}>
-                            <div><h3>{employee.name}</h3></div>
-                        </Link>
+                        return <section className="employee" >
+                            <Link key={employee.id} to={`/employees/${employee.id}`}>
+                                <h3>{employee.name}</h3>
+                            </Link>
+                        </section>
                     })
                 }
             </article>
