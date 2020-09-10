@@ -1,0 +1,17 @@
+{
+    "editor.tokenColorCustomizations": {
+    "comments": "#464646"  //darker than dimgrey
+    }
+}
+
+// {
+//     "editor.tokenColorCustomizations": {
+//     "comments": "#696969"  //dimgrey
+//     }
+// }
+
+// {
+//     "editor.tokenColorCustomizations": {
+//     "comments": "#616161"  
+//     }
+// }

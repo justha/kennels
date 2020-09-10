@@ -1,17 +1,31 @@
-import React, { useContext, useEffect } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import { AnimalContext } from "./AnimalProvider"
 import Animal from "./Animal"
 import "./Animal.css"
 
-
 export const AnimalList = ({ history }) => {
-    const { getAnimals, animals } = useContext(AnimalContext)
+    const { getAnimals, animals, searchTerms } = useContext(AnimalContext)
 
-    // Initialization effect hook -> Go get animal data
-    useEffect(()=>{
+    // Since you are no longer ALWAYS going to be displaying all animals 
+    const [ filteredAnimals, setFiltered ] = useState([])
+
+
+    useEffect(() => {
         getAnimals()
     }, [])
 
+
+    useEffect(() => {
+        const subset = animals.filter(animal => animal.name.toLowerCase().includes(searchTerms.toLowerCase()))
+        setFiltered(subset)
+     }, [searchTerms])
+ 
+ 
+     useEffect(() => {
+        setFiltered(animals)
+     }, [animals])
+    
+    
     return (
         <>
             <h1>Animals</h1>
@@ -21,7 +35,7 @@ export const AnimalList = ({ history }) => {
             </button>
             <div className="animals">
                 {
-                    animals.map(animal => {
+                    filteredAnimals.map(animal => {
                         return <Animal key={animal.id} animal={animal} />
                     })
                 }
