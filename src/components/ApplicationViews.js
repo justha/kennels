@@ -74,15 +74,18 @@ export const ApplicationViews = (props) => {
 
             <EmployeeProvider>
                     <LocationProvider>
+
                     <Route exact path="/employees" render={(props) => {
                         return <EmployeeList history={props.history} />
                     }} />
+                    
                     </LocationProvider>
             </EmployeeProvider>
 
             <EmployeeProvider>
                 <LocationProvider>
                     <AnimalProvider>
+
                         <Route path="/employees/create" render={
                             props => <EmployeeForm {...props} />
                         } />
@@ -90,6 +93,7 @@ export const ApplicationViews = (props) => {
                         <Route path="/employees/:employeeId(\d+)" render={
                             props => <EmployeeDetail {...props} />
                         } />
+                        
                     </AnimalProvider>
                 </LocationProvider>
             </EmployeeProvider>

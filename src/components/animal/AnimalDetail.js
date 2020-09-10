@@ -23,10 +23,12 @@ export const AnimalDetail = (props) => {
             
             <button className="btn--release" onClick={() => {
                 releaseAnimal(animal.id)
-                .then(() => {props.history.push("/animals")})}}>Discharge</button>
+                .then(() => {props.history.push("/animals")})}}>Discharge
+            </button>
 
             <button onClick={() => {
-                props.history.push(`/animals/edit/${animal.id}`)}}>Edit</button>
+                props.history.push(`/animals/edit/${animal.id}`)}}>Edit
+            </button>
 
         </section>
     )
