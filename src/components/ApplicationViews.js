@@ -13,6 +13,7 @@ import { AnimalForm } from "./animal/AnimalForm"
 import { EmployeeDetail } from "./employee/EmployeeDetail"
 import { LocationDetail } from "./location/LocationDetail"
 import { AnimalDetail } from "./animal/AnimalDetail";
+import { AnimalSearch } from "./animal/AnimalSearch";
 
 
 export const ApplicationViews = (props) => {
@@ -22,6 +23,7 @@ export const ApplicationViews = (props) => {
             <LocationProvider>
                 <EmployeeProvider>
                     <AnimalProvider>
+
                         <Route exact path="/">      {/* Render the location list when http://localhost:3000/ */}
                             <LocationList />
                         </Route>
@@ -29,6 +31,7 @@ export const ApplicationViews = (props) => {
                         <Route path="/locations/:locationId(\d+)" render={
                             props => <LocationDetail {...props} />
                         } />
+                        
                     </AnimalProvider>
                 </EmployeeProvider>
             </LocationProvider>
@@ -37,9 +40,13 @@ export const ApplicationViews = (props) => {
             <AnimalProvider>
                 <CustomerProvider>
                     <LocationProvider>
-                        <Route exact path="/animals" render={(props) => {
-                            return <AnimalList history={props.history} />
-                        }} />
+
+                        <Route exact path="/animals" render={
+                            props => <>
+                                <AnimalSearch />
+                                <AnimalList {...props} />
+                            </>
+                        } />
 
                         <Route exact path="/animals/create" render={(props) => {
                             return <AnimalForm {...props} />
@@ -48,6 +55,7 @@ export const ApplicationViews = (props) => {
                         <Route path="/animals/:animalId(\d+)" render={
                             props => <AnimalDetail {...props} />
                         } />
+
                     </LocationProvider>
                 </CustomerProvider>
             </AnimalProvider>
