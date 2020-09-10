@@ -8,11 +8,17 @@ import "./Employee.css"
 export const EmployeeDetail = (props) => {
     const { animals, getAnimals } = useContext(AnimalContext)
     const { locations, getLocations } = useContext(LocationContext)
-    const { employees, getEmployees } = useContext(EmployeeContext)
+    const { employees, getEmployees, removeEmployee, getEmployeeById } = useContext(EmployeeContext)
 
     const [animal, setAnimal] = useState({})
     const [employee, setEmployee] = useState({})
     const [location, setLocation] = useState({})
+
+    useEffect(() => {
+        const employeeId = parseInt(props.match.params.employeeId)
+        getEmployeeById(employeeId)
+            .then(setEmployee)
+    }, [])
 
     useEffect(() => {
         console.log("initialization of EmployeeDetail")
@@ -50,6 +56,12 @@ export const EmployeeDetail = (props) => {
                     : `Currently taking care of ${animal.name}`
                 }
             </div>
+
+            <button className="btn--remove" onClick={() => {
+                removeEmployee(employee.id)
+                .then(() => {props.history.push("/employees")})}}>Remove
+            </button>
+
         </section>
     )
 }
